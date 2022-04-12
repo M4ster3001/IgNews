@@ -1,0 +1,21 @@
+{
+  "id": "47397dd2-ca5c-4aa5-96c6-02a406e1a4bb",
+  "uid": "fuga-delectus-non",
+  "type": "pub-odla",
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Extend wireless experiences",
+        "spans": []
+      }
+    ],
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Id tempor aliquip non enim qui amet exercitation aliqua Lorem qui excepteur consectetur veniam aliquip eu.",
+        "spans": []
+      }
+    ]
+  }
+}
