@@ -4,6 +4,7 @@ import { GetStaticProps } from 'next'
 import { getPrismicClient } from '../../services/prismic'
 import { RichText } from 'prismic-dom'
 import React from 'react'
+import Link from 'next/link'
 
 type Post = {
   slug: string
@@ -26,11 +27,11 @@ export default function Posts({ posts }: PostsProps) {
       <main className={styles.container}>
         <div className={styles.posts}>
           {posts.map((post, key: React.Key) => (
-            <a key={key} href="#">
+            <Link key={key} href={`/posts/${post.slug}`} passHref>
               <time>{post.updatedAt}</time>
               <strong>{post.title}</strong>
               <p>{post.exercept}</p>
-            </a>
+            </Link>
           ))}
         </div>
       </main>
