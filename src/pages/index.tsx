@@ -1,20 +1,20 @@
-import {GetServerSideProps, GetStaticProps} from 'next';
-import Head from 'next/head';
-import Img from 'next/image';
-import { SubscribeButton } from '../components/SubscribeButton';
-import styles from './home.module.scss';
+import { GetServerSideProps, GetStaticProps } from 'next'
+import Head from 'next/head'
+import Img from 'next/image'
+import { SubscribeButton } from '../components/SubscribeButton'
+import styles from './home.module.scss'
 
 import girlCoding from '../../public/images/avatar.svg'
-import { stripe } from '../services/stripe';
+import { stripe } from '../services/stripe'
 
 interface HomeProps {
   product: {
-    priceId: string;
-    amount: number;
+    priceId: string
+    amount: number
   }
 }
 
-export default function Home({product}: HomeProps) {
+export default function Home({ product }: HomeProps) {
   return (
     <>
       <Head>
@@ -23,17 +23,19 @@ export default function Home({product}: HomeProps) {
 
       <main className={styles.contentContainer}>
         <section className={styles.hero}>
-            <span>Hey, Welcome</span>
-            <h1>News about the <span>React</span> world.</h1>
-            <p>
-              Get access to all the publications <br />
-              <span>for {product.amount} monthly</span>
-            </p>
+          <span>Hey, Welcome</span>
+          <h1>
+            News about the <span>React</span> world.
+          </h1>
+          <p>
+            Get access to all the publications <br />
+            <span>for {product.amount} monthly</span>
+          </p>
 
-            <SubscribeButton priceId={product.priceId} />
+          <SubscribeButton priceId={product.priceId} />
         </section>
 
-        <Img src={girlCoding} alt="Girl Coding"/>
+        <Img src={girlCoding} alt="Girl Coding" />
       </main>
     </>
   )
@@ -62,7 +64,7 @@ export default function Home({product}: HomeProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve('', {
     expand: ['product']
-  });
+  })
 
   const product = {
     priceId: price.id,
@@ -70,13 +72,12 @@ export const getStaticProps: GetStaticProps = async () => {
       style: 'currency',
       currency: 'USD'
     }).format(price.unit_amount / 100)
-  };
+  }
 
   return {
     props: {
       product
     },
-    revalidate: (60 * 60 * 24) // 24 horas
+    revalidate: 60 * 60 * 24 // 24 horas
   }
 }
-

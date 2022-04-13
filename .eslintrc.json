@@ -13,7 +13,6 @@
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:security/recommended",
-        "plugin:react-hooks/recommended",
         "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
@@ -27,7 +26,6 @@
     "plugins": [
         "react",
         "@typescript-eslint",
-        "react-hooks",
         "prettier",
         "security"
     ],
