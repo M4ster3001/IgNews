@@ -6,14 +6,14 @@ import { getPrismicClient } from '../../services/prismic'
 
 import styles from 'post.module.scss'
 
-type PostsProps = {
+type PostProps = {
   slug: string
   title: string
   content: string
   updatedAt: string
 }
 
-export function Post({ slug, title, content, updatedAt }: PostsProps) {
+export function Post({ slug, title, content, updatedAt }: PostProps) {
   return (
     <>
       <Head>
@@ -41,8 +41,14 @@ export const getServerSideProps: GetServerSideProps = async ({
   const session = await getSession({ req })
   const { slug } = params
 
-  // if(!session) {
-  // }
+  if (!session?.activeSubscription) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
 
   const prismic = getPrismicClient(req)
 
